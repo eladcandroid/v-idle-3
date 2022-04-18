@@ -29,7 +29,7 @@ Latest version of the plugin is available here:
 
 ### Vue.js
 
-```javascript\
+```javascript
 import { createApp } from "vue";
 import Vidle from 'v-idle-3'
 
