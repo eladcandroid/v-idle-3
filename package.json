@@ -1,11 +1,12 @@
 {
   "name": "v-idle",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A Vue.js plugin to detect idle/non-active users",
   "main": "build/vidle.min.js",
   "scripts": {
     "lint": "eslint --ext .ts --ignore-path .gitignore .",
     "test": "jest",
+    "test:watch": "jest --verbose --watch",
     "build": "rollup -c rollup.config.ts"
   },
   "repository": {
@@ -17,7 +18,7 @@
     "vuejs",
     "plugin"
   ],
-  "author": "Lukasz Malek <dev@malek.im>",
+  "author": "Elad Cohen <eladc.android@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/malekim/v-idle/issues"
@@ -28,7 +29,7 @@
     "@types/jest": "^26.0.21",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
-    "@vue/test-utils": "^1.1.3",
+    "@vue/test-utils": "^2.0.0-rc.20",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
@@ -36,14 +37,14 @@
     "jest": "^26.6.3",
     "jest-date-mock": "^1.0.8",
     "npm": "^7.6.3",
-    "prettier": "^2.2.1",
+    "prettier": "^2.6.2",
     "rollup": "^2.42.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-uglify": "^6.0.4",
     "serialize-javascript": "^5.0.1",
     "ts-jest": "^26.5.4",
     "typescript": "^4.2.3",
-    "vue": "^2.6.12",
-    "vue-template-compiler": "^2.6.12"
+    "vue": "^3.2.31",
+    "vue-template-compiler": "^2.6.14"
   }
 }

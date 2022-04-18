@@ -1,8 +1,8 @@
-import Vue, { CreateElement, PropType, VNode } from 'vue'
+import { defineComponent, h, PropType, VNode } from 'vue'
 
-const Vidle = Vue.extend({
-  render(createElement: CreateElement): VNode {
-    return createElement(
+const Vidle = defineComponent({
+  render() {
+    return h(
       'div',
       {
         class: 'v-idle',
@@ -10,6 +10,7 @@ const Vidle = Vue.extend({
       this.display
     )
   },
+  emits: ['idle', 'remind'],
   props: {
     duration: {
       type: Number,
