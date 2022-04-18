@@ -1,16 +1,8 @@
 base: '/v-idle/'
-title: 'malekim/v-idle'
+title: 'eladcandroid/v-idle-3'
 dest: 'docs'
-description: 'V-idle is a Vue.js plugin to detect idle/non-active users.'
+description: 'V-idle-3 is a Vue.js 3 plugin to detect idle/non-active users.'
 themeConfig:
-  repo: 'malekim/v-idle'
+  repo: 'eladcandroid/v-idle-3'
   sidebar:
-    '/': [
-      {
-        title: 'Introduction',
-        collapsable: false,
-        children: [
-          '',
-        ]
-      }
-    ]
+    '/': [{ title: 'Introduction', collapsable: false, children: [''] }]

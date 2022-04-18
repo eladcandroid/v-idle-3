@@ -1,8 +1,8 @@
-# v-idle
+# v-idle-3
 
-[![codecov](https://codecov.io/gh/malekim/v-idle/branch/master/graph/badge.svg)](https://codecov.io/gh/malekim/v-idle)
+[![codecov](https://codecov.io/gh/eladcandroid/v-idle-3/branch/master/graph/badge.svg)](https://codecov.io/gh/eladcandroid/v-idle)
 
-V-idle is a Vue.js plugin to detect idle/non-active users.
+V-idle-3 is a Vue.js plugin to detect idle/non-active users, with a Vue.js 3 support.
 
 ## Installation
 
@@ -11,29 +11,32 @@ The plugin can be installed by npm or yarn. Alternatively it can be used through
 ### NPM
 
 ```bash
-npm install v-idle --save
+npm install v-idle-3 --save
 ```
 
 ### Yarn
 
 ```bash
-yarn add v-idle
+yarn add v-idle-3
 ```
 
 ### Jsdelivr CDN
 
 Latest version of the plugin is available here:
-[https://cdn.jsdelivr.net/npm/v-idle@latest/build/vidle.min.js](https://cdn.jsdelivr.net/npm/v-idle@latest/build/vidle.min.js)
+[https://cdn.jsdelivr.net/npm/v-idle-3@latest/build/vidle.min.js](https://cdn.jsdelivr.net/npm/v-idle@latest/build/vidle.min.js)
 
 ## Basic usage
 
 ### Vue.js
 
-```javascript
-import Vue from 'vue'
-import Vidle from 'v-idle'
+```javascript\
+import { createApp } from "vue";
+import Vidle from 'v-idle-3'
 
-Vue.use(Vidle)
+const myApp = createApp(App);
+myApp.use(Vidle);
+
+myApp.mount("#app");
 ```
 
 Same for nuxt.js:
@@ -43,10 +46,13 @@ Same for nuxt.js:
 Create vidle.js in plugins directory:
 
 ```javascript
-import Vue from 'vue'
-import Vidle from 'v-idle'
+import { createApp } from "vue";
+import Vidle from 'v-idle-3'
 
-Vue.use(Vidle)
+const myApp = createApp(App);
+myApp.use(Vidle);
+
+myApp.mount("#app");
 ```
 
 Then in nuxt.config.js:
@@ -193,6 +199,8 @@ To run particular test type:
 npm run test -- -t "test_name"
 ```
 
+## Great thanks
+[To the original repository](https://github.com/malekim/v-idle) made by malekim.
 ## License
 
-`v-idle` uses the MIT License (MIT). Please see the [license file](https://github.com/malekim/v-idle/blob/master/LICENSE) for more information.
+`v-idle` uses the MIT License (MIT). Please see the [license file](https://github.com/eladcandroid/v-idle-3/blob/master/LICENSE) for more information.
