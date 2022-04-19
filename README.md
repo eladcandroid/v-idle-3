@@ -1,206 +1,52 @@
-# v-idle-3
+# vue-ts-plugin-vite
 
-[![codecov](https://codecov.io/gh/eladcandroid/v-idle-3/branch/master/graph/badge.svg)](https://codecov.io/gh/eladcandroid/v-idle)
+This template should help get you started developing with Vue 3 in Vite.
 
-V-idle-3 is a Vue.js plugin to detect idle/non-active users, with a Vue.js 3 support.
+## Recommended IDE Setup
 
-## Installation
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
 
-The plugin can be installed by npm or yarn. Alternatively it can be used through jsdelivr CDN.
+## Type Support for `.vue` Imports in TS
 
-### NPM
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
 
-```bash
-npm install v-idle-3 --save
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+
+1. Disable the built-in TypeScript Extension
+    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
+npm install
 ```
 
-### Yarn
+### Compile and Hot-Reload for Development
 
-```bash
-yarn add v-idle-3
+```sh
+npm run dev
 ```
 
-### Jsdelivr CDN
+### Type-Check, Compile and Minify for Production
 
-Latest version of the plugin is available here:
-[https://cdn.jsdelivr.net/npm/v-idle-3@latest/build/vidle.min.js](https://cdn.jsdelivr.net/npm/v-idle@latest/build/vidle.min.js)
-
-## Basic usage
-
-### Vue.js
-
-```javascript
-import { createApp } from "vue";
-import Vidle from 'v-idle-3'
-
-const myApp = createApp(App);
-myApp.use(Vidle);
-
-myApp.mount("#app");
+```sh
+npm run build
 ```
 
-Same for nuxt.js:
+### Run Unit Tests with [Vitest](https://vitest.dev/)
 
-### Nuxt.js
-
-Create vidle.js in plugins directory:
-
-```javascript
-import { createApp } from "vue";
-import Vidle from 'v-idle-3'
-
-const myApp = createApp(App);
-myApp.use(Vidle);
-
-myApp.mount("#app");
+```sh
+npm run test:unit
 ```
 
-Then in nuxt.config.js:
+### Lint with [ESLint](https://eslint.org/)
 
-```javascript
-module.exports = {
-  plugins: [
-    {
-      src: '~/plugins/vidle.js'
-    }
-  ]
-}
+```sh
+npm run lint
 ```
-
-## Component
-
-Inside template use v-idle component:
-
-```html
-<v-idle />
-```
-
-It will show timer counting down from 05:00 by default.
-
-## Options
-
-### @idle
-
-Type: Function
-
-Default: none
-
-Executes when the timer reaches 00:00
-
-```html
-<v-idle @idle="onidle" />
-```
-
-### @remind
-
-Type: Function
-
-Default: none
-
-Executes when the timer reaches time in seconds before 00:00
-
-```html
-<v-idle
-  @remind="onremind"
-  :reminders="[5, 10, 20, 60]" />
-```
-
-### reminders
-
-Type: Array
-
-Default: empty array
-
-Array with seconds. Each value will execute @remind
-
-### loop
-
-Type: Boolean
-
-Default: false
-
-If set to true, timer will start execution again after 00:00
-
-```html
-<v-idle :loop="true" />
-```
-
-### events
-
-Type: Array
-
-Default: ['mousemove', 'keypress']
-
-Each event will break countdown.
-
-```html
-<v-idle :events="['mousemove']" />
-```
-
-### wait
-
-Type: Number
-
-Default: 0
-
-How many second to wait before starting countdown.
-
-```html
-<v-idle :wait="100" />
-```
-
-### duration
-
-Type: Number
-
-Default: 60 * 5
-
-Should be in seconds, default value is 60 * 5 seconds, so 5 minutes.
-
-```html
-<v-idle :duration="300" />
-```
-
-## Example
-
-Create a timer for 300 seconds (5 minutes) with loop, remind 10 and 15 second before 00:00 with function onremind(), wait 5 seconds before showing user the timer, execute function onidle() when the timer reaches 00:00.
-
-```html
-<v-idle
-  @idle="onidle"
-  @remind="onremind"
-  :loop="true"
-  :reminders="[10, 15]"
-  :wait="5"
-  :duration="300" />
-```
-
-```javascript
-  methods: {
-    onidle() {
-      alert('You have been logged out');
-    },
-    onremind(time) {
-      // alert seconds remaining to 00:00
-      alert(time);
-    }
-  }
-```
-
-## Tests
-
-To run tests type:
-```bash
-npm run test
-```
-
-To run particular test type:
-```bash
-npm run test -- -t "test_name"
-```
-
-## Great thanks
-[To the original repository](https://github.com/malekim/v-idle) made by malekim.
-## License
-
-`v-idle` uses the MIT License (MIT). Please see the [license file](https://github.com/eladcandroid/v-idle-3/blob/master/LICENSE) for more information.

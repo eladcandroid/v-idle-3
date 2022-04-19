@@ -1,16 +1,17 @@
-import { defineComponent, h, PropType, VNode } from 'vue'
+import { defineComponent, h } from "vue";
+import type { PropType } from "vue";
 
 const Vidle = defineComponent({
   render() {
     return h(
-      'div',
+      "div",
       {
-        class: 'v-idle',
+        class: "v-idle",
       },
       this.display
-    )
+    );
   },
-  emits: ['idle', 'remind'],
+  emits: ["idle", "remind"],
   props: {
     duration: {
       type: Number,
@@ -19,7 +20,7 @@ const Vidle = defineComponent({
     },
     events: {
       type: Array as PropType<string[]>,
-      default: (): string[] => ['mousemove', 'keypress'],
+      default: (): string[] => ["mousemove", "keypress"],
     },
     loop: {
       type: Boolean,
@@ -37,96 +38,98 @@ const Vidle = defineComponent({
     },
   },
   data(): {
-    display: string
-    timer: number | undefined
-    start: number
-    counter: number | undefined
-    diff: number
-    minutes: string
-    seconds: string
+    display: string;
+    timer: number | undefined;
+    start: number;
+    counter: number | undefined;
+    diff: number;
+    minutes: string;
+    seconds: string;
   } {
     return {
-      display: '',
+      display: "",
       timer: undefined,
       start: 0,
       counter: undefined,
       diff: 0,
-      minutes: '',
-      seconds: '',
-    }
+      minutes: "",
+      seconds: "",
+    };
   },
   mounted() {
     setTimeout(() => {
-      this.start = Date.now()
-      this.setDisplay()
+      this.start = Date.now();
+      this.setDisplay();
       this.$nextTick(() => {
-        this.setTimer()
+        this.setTimer();
         for (let i = this.events.length - 1; i >= 0; i -= 1) {
-          window.addEventListener(this.events[i], this.clearTimer)
+          window.addEventListener(this.events[i], this.clearTimer);
         }
-      })
-    }, this.wait * 1000)
+      });
+    }, this.wait * 1000);
   },
   methods: {
     setDisplay() {
       // seconds since start
-      this.diff = this.duration - (((Date.now() - this.start) / 1000) | 0)
+      this.diff = this.duration - (((Date.now() - this.start) / 1000) | 0);
       if (this.diff < 0 && !this.loop) {
-        return
+        return;
       }
-      this.shouldRemind()
+      this.shouldRemind();
 
       // bitwise OR to handle parseInt
-      const minute = (this.diff / 60) | 0
-      const second = this.diff % 60 | 0
+      const minute = (this.diff / 60) | 0;
+      const second = this.diff % 60 | 0;
 
-      this.minutes = `${minute < 10 ? '0' + minute : minute}`
-      this.seconds = `${second < 10 ? '0' + second : second}`
+      this.minutes = `${minute < 10 ? "0" + minute : minute}`;
+      this.seconds = `${second < 10 ? "0" + second : second}`;
 
-      this.display = `${this.minutes}:${this.seconds}`
+      this.display = `${this.minutes}:${this.seconds}`;
     },
     shouldRemind() {
       if (this.reminders.length > 0) {
         if (this.reminders.includes(this.diff)) {
-          this.remind()
+          this.remind();
         }
       }
     },
     countdown() {
-      this.setDisplay()
+      this.setDisplay();
 
       if (this.diff <= 0 && this.loop) {
         // add second to start at the full duration
         // for instance 05:00, not 04:59
-        this.start = Date.now() + 1000
+        this.start = Date.now() + 1000;
       }
     },
     idle() {
-      this.$emit('idle')
+      console.log("ELAD emit idle");
+
+      this.$emit("idle");
     },
     remind() {
-      this.$emit('remind', this.diff)
+      this.$emit("remind", this.diff);
     },
     setTimer() {
-      this.timer = window.setInterval(this.idle, this.duration * 1000)
-      this.counter = window.setInterval(this.countdown, 1000)
+      this.timer = window.setInterval(this.idle, this.duration * 1000);
+      this.counter = window.setInterval(this.countdown, 1000);
     },
     clearTimer() {
-      clearInterval(this.timer)
-      clearInterval(this.counter)
-      this.setDisplay()
-      this.start = Date.now()
-      this.diff = 0
-      this.setTimer()
+      clearInterval(this.timer);
+      clearInterval(this.counter);
+      this.setDisplay();
+      this.start = Date.now();
+      this.diff = 0;
+      this.setTimer();
     },
   },
-  beforeDestroy() {
-    clearInterval(this.timer)
-    clearInterval(this.counter)
+  beforeUnmount() {
+    clearInterval(this.timer);
+    clearInterval(this.counter);
     for (let i = this.events.length - 1; i >= 0; i -= 1) {
-      window.removeEventListener(this.events[i], this.clearTimer)
+      window.removeEventListener(this.events[i], this.clearTimer);
     }
   },
-})
+});
 
-export default Vidle
+export default Vidle;

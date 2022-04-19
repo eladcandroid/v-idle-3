@@ -1,8 +1,0 @@
-base: '/v-idle/'
-title: 'eladcandroid/v-idle-3'
-dest: 'docs'
-description: 'V-idle-3 is a Vue.js 3 plugin to detect idle/non-active users.'
-themeConfig:
-  repo: 'eladcandroid/v-idle-3'
-  sidebar:
-    '/': [{ title: 'Introduction', collapsable: false, children: [''] }]
