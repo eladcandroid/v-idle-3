@@ -2,7 +2,7 @@
   "name": "v-idle-3",
   "version": "0.3.3",
   "description": "A Vue.js plugin to detect idle/non-active users",
-  "main": "build/vidle.min.js",
+  "main": "dist/v-idle-3.es.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eladcandroid/v-idle-3.git"
