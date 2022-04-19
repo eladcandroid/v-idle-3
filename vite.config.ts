@@ -2,10 +2,11 @@ import { fileURLToPath, URL } from "url";
 
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import dts from "vite-plugin-dts";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), dts()],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
@@ -15,9 +16,9 @@ export default defineConfig({
     cssCodeSplit: false,
     lib: {
       entry: "./src/index.ts",
-      formats: ["es", "cjs"],
-      name: "v-idle-3",
-      fileName: (format) => (format === "es" ? "index.js" : "index.cjs"),
+      formats: ["es"],
+      name: "VIdle3",
+      fileName: "v-idle-3",
     },
     rollupOptions: {
       external: ["vue"],
