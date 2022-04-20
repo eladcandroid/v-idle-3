@@ -1,10 +1,10 @@
-import { App } from "vue";
-
+import type { App } from "vue";
+export interface InstallationOptions {
+  name?: string;
+}
 declare namespace VIdle3 {
-  export interface InstallationOptions {
-    name?: string;
-  }
-  export function install(app: App, options?: InstallationOptions): void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  export function install(app: App, options: InstallationOptions): any;
 }
 
 export default VIdle3;
