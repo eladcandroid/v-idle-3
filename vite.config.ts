@@ -1,12 +1,15 @@
 import { fileURLToPath, URL } from "url";
 
 import { defineConfig } from "vite";
+import createBanner from "create-banner";
 import vue from "@vitejs/plugin-vue";
-import dts from "vite-plugin-dts";
+import pkg from "./package.json";
+
+const banner = createBanner();
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), dts()],
+  plugins: [vue()],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
@@ -15,14 +18,14 @@ export default defineConfig({
   build: {
     cssCodeSplit: false,
     lib: {
-      entry: "./src/index.ts",
-      formats: ["es"],
-      name: "VIdle3",
-      fileName: "v-idle-3",
+      entry: "src/index.ts",
+      name: pkg.scope,
+      fileName: "index",
     },
     rollupOptions: {
       external: ["vue"],
       output: {
+        banner,
         globals: {
           vue: "Vue",
         },

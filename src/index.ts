@@ -1,9 +1,14 @@
 import type { App } from "vue";
-import vidle from "./components/vidle";
+import defaults from "lodash/defaults";
+import component from "./components/vidle";
+
+export interface InstallationOptions {
+  name?: string;
+}
 
 const Vidle = {
-  install(app: App): void {
-    app.component("v-idle", vidle);
+  install(app: App, { name = "v-idle" }: InstallationOptions = {}): void {
+    app.component(name, defaults(component, { name }));
   },
 };
 
