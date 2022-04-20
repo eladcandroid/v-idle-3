@@ -3,10 +3,10 @@
   "version": "0.3.8",
   "description": "A Vue.js plugin to detect idle/non-active users",
   "scope": "VIdle3",
-  "main": "./dist/index.umd.js",
-  "unpkg": "./dist/index.umd.js",
-  "module": "./dist/index.es.js",
-  "types": "./types/index.d.ts",
+  "main": "dist/index.umd.js",
+  "unpkg": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eladcandroid/v-idle-3.git"
