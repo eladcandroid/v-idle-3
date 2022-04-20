@@ -2,14 +2,12 @@ import type { App } from "vue";
 import defaults from "lodash/defaults";
 import component from "./components/vidle";
 
-export interface InstallationOptions {
+interface InstallationOptions {
   name?: string;
 }
 
-const Vidle = {
+export default {
   install(app: App, { name = "v-idle" }: InstallationOptions = {}): void {
     app.component(name, defaults(component, { name }));
   },
 };
-
-export default Vidle;
