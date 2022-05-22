@@ -21,11 +21,35 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ["vue"],
-      output: {
-        globals: {
-          vue: "Vue",
+      output: [
+        {
+          format: "esm",
+          globals: {
+            vue: "Vue",
+          },
+          paths: {
+            vue: "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js",
+          },
         },
-      },
+        {
+          format: "es",
+          globals: {
+            vue: "Vue",
+          },
+        },
+        {
+          format: "cjs",
+          globals: {
+            vue: "Vue",
+          },
+        },
+        {
+          format: "umd",
+          globals: {
+            vue: "Vue",
+          },
+        },
+      ],
     },
   },
 });

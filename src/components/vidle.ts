@@ -97,14 +97,10 @@ const Vidle = defineComponent({
       this.setDisplay();
 
       if (this.diff <= 0 && this.loop) {
-        // add second to start at the full duration
-        // for instance 05:00, not 04:59
-        this.start = Date.now() + 1000;
+        this.clearTimer();
       }
     },
     idle() {
-      console.log("ELAD emit idle");
-
       this.$emit("idle");
     },
     remind() {
@@ -117,9 +113,9 @@ const Vidle = defineComponent({
     clearTimer() {
       clearInterval(this.timer);
       clearInterval(this.counter);
-      this.setDisplay();
       this.start = Date.now();
       this.diff = 0;
+      this.setDisplay();
       this.setTimer();
     },
   },
