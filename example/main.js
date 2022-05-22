@@ -5,6 +5,11 @@ const app = createApp({
   data() {
     return {};
   },
+  methods: {
+    checkEmit() {
+      console.log("checkEmit");
+    },
+  },
 });
 
 app.use(Vidle);

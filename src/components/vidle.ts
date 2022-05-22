@@ -96,8 +96,8 @@ const Vidle = defineComponent({
     countdown() {
       this.setDisplay();
 
-      if (this.diff <= 0 && this.loop) {
-        this.clearTimer();
+      if (this.diff <= 0) {
+        this.clearTimer(this.loop);
       }
     },
     idle() {
@@ -110,13 +110,15 @@ const Vidle = defineComponent({
       this.timer = window.setInterval(this.idle, this.duration * 1000);
       this.counter = window.setInterval(this.countdown, 1000);
     },
-    clearTimer() {
-      clearInterval(this.timer);
-      clearInterval(this.counter);
-      this.start = Date.now();
-      this.diff = 0;
-      this.setDisplay();
-      this.setTimer();
+    clearTimer(loop = false) {
+      window.clearInterval(this.timer);
+      window.clearInterval(this.counter);
+      if (loop) {
+        this.start = Date.now();
+        this.diff = 0;
+        this.setDisplay();
+        this.setTimer();
+      }
     },
   },
   beforeUnmount() {
