@@ -1,5 +1,5 @@
-import { defineComponent, h } from "vue";
 import type { PropType } from "vue";
+import { defineComponent, h } from "vue";
 
 const Vidle = defineComponent({
   render() {
@@ -19,8 +19,8 @@ const Vidle = defineComponent({
       default: 60 * 5,
     },
     events: {
-      type: Array as PropType<string[]>,
-      default: (): string[] => ["mousemove", "keypress"],
+      type: Array as PropType<(keyof WindowEventMap)[]>,
+      default: () => ["mousemove", "keypress"],
     },
     loop: {
       type: Boolean,
@@ -97,7 +97,7 @@ const Vidle = defineComponent({
       this.setDisplay();
 
       if (this.diff <= 0) {
-        this.clearTimer(this.loop);
+        this.clearTimer(undefined, this.loop);
       }
     },
     idle() {
@@ -110,7 +110,7 @@ const Vidle = defineComponent({
       this.timer = window.setInterval(this.idle, this.duration * 1000);
       this.counter = window.setInterval(this.countdown, 1000);
     },
-    clearTimer(loop = false) {
+    clearTimer(event?: Event, loop = true) {
       window.clearInterval(this.timer);
       window.clearInterval(this.counter);
       if (loop) {
